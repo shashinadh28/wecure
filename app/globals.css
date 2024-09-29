@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'flowbite';
+
+
+#extra-text:target {
+  display: block;
+}
 
 :root {
   --background: #ffffff;
