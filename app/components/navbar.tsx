@@ -51,66 +51,65 @@ const Mont = Montserrat({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-export default function Navbar(){
-    const controls = useAnimation();
-    const [isVisible, setIsVisible] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
-    const [selectedOption, setSelectedOption] = useState("Actions");
-  
-    // This function will run when the component comes into view
-    const handleScroll = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          controls.start({ opacity: 1, y: 0 }); // Animate to full opacity and original position
-        } else {
-          controls.start({ opacity: 0, y: 20 }); // Animate to invisible and slightly down
-        }
-      });
-    };
-  
-    useEffect(() => {
-      const observer = new IntersectionObserver(handleScroll);
-      const target = document.getElementById("animated-section");
-  
-      if (target) {
-        observer.observe(target);
-      }
-  
-      return () => {
-        if (target) {
-          observer.unobserve(target);
-        }
-      };
-    }, [controls]);
-  
-    // Function to toggle dropdown visibility
-    const toggleDropdown = () => {
-      setIsOpen(!isOpen);
-    };
-  
-    // Function to handle option selection
-    const handleSelectOption = (option: string) => {
-      setSelectedOption(option);
-      setIsOpen(false); // Close the dropdown after selecting an option
-    };
-  
-    const toggleSection = (index: number) => {
-      if (openIndex === index) {
-        setOpenIndex(null); // Close the currently opened section
+export default function Navbar() {
+  const controls = useAnimation();
+  const [isVisible, setIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [selectedOption, setSelectedOption] = useState("Actions");
+
+  // This function will run when the component comes into view
+  const handleScroll = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        controls.start({ opacity: 1, y: 0 }); // Animate to full opacity and original position
       } else {
-        setOpenIndex(index); // Open the clicked section
+        controls.start({ opacity: 0, y: 20 }); // Animate to invisible and slightly down
+      }
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleScroll);
+    const target = document.getElementById("animated-section");
+
+    if (target) {
+      observer.observe(target);
+    }
+
+    return () => {
+      if (target) {
+        observer.unobserve(target);
       }
     };
-  
-    const toggleSlideover = () => {
-      setIsVisible((prev) => !prev);
-    };
-   
-   
-    return (
-        <div>
-            <nav>
+  }, [controls]);
+
+  // Function to toggle dropdown visibility
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // Function to handle option selection
+  const handleSelectOption = (option: string) => {
+    setSelectedOption(option);
+    setIsOpen(false); // Close the dropdown after selecting an option
+  };
+
+  const toggleSection = (index: number) => {
+    if (openIndex === index) {
+      setOpenIndex(null); // Close the currently opened section
+    } else {
+      setOpenIndex(index); // Open the clicked section
+    }
+  };
+
+  const toggleSlideover = () => {
+    setIsVisible((prev) => !prev);
+  };
+
+  return (
+    <div>
+      <nav>
         {/* bg white */}
         <div className="relative bg-white md:px-48 h-[300px] md:h-[130px]">
           {/* bg white */}
@@ -253,17 +252,13 @@ export default function Navbar(){
             <span className="bg-gray-300 h-5 w-[1px]"></span>
             <div className=" text-gray-700">Contact</div>{" "}
             <span className="bg-gray-300 h-5 w-[1px]"></span>
-            <div className=" ">
+            <div className="">
               <i className="ri-search-line text-cyan-400 ml-52 text-lg"></i>
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-64 h-7     px-4"
-              />
+              <input type="text" placeholder="Search..." className="border-none" />
             </div>
           </div>
         </div>
       </nav>
-        </div>
-    );
+    </div>
+  );
 }
