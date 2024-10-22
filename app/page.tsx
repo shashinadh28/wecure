@@ -1,30 +1,24 @@
 "use client";
 
 import Image from "next/image";
-import { IoMdMedical } from "react-icons/io";
-import { animate, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 import "remixicon/fonts/remixicon.css";
 import { useState } from "react";
-import { Montserrat } from "next/font/google";
 import { Mulish } from "next/font/google";
 import { Outfit } from "next/font/google";
 import { Fredoka } from "next/font/google";
 import { Dancing_Script } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import { Poppins } from "next/font/google";
-import { MdPregnantWoman } from "react-icons/md";
-import { TbHomeHeart } from "react-icons/tb";
-import { GiFruitBowl } from "react-icons/gi";
-import { MdLocalPharmacy } from "react-icons/md";
-import { BiSolidHomeHeart } from "react-icons/bi";
+
 import { useAnimation } from "framer-motion";
 import "remixicon/fonts/remixicon.css"; // Import Remix Iconszz
-import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import Navbar from "./components/navbar";
 import Section1 from "./components/section1";
 import Section2 from "./components/section2";
 import { Section4 } from "./components/section4";
+import Section5 from "./components/section5";
 
 const pop = Poppins({
   subsets: ["latin"],
@@ -50,16 +44,10 @@ const dance = Dancing_Script({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-const Mont = Montserrat({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-});
+
 export default function Home() {
   const controls = useAnimation();
-  const [isVisible, setIsVisible] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [selectedOption, setSelectedOption] = useState("Actions");
 
   // This function will run when the component comes into view
   const handleScroll = (entries: IntersectionObserverEntry[]) => {
@@ -87,16 +75,9 @@ export default function Home() {
     };
   }, [controls]);
 
-  // Function to toggle dropdown visibility
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+ 
 
-  // Function to handle option selection
-  const handleSelectOption = (option: string) => {
-    setSelectedOption(option);
-    setIsOpen(false); // Close the dropdown after selecting an option
-  };
+
 
   const toggleSection = (index: number) => {
     if (openIndex === index) {
@@ -106,9 +87,7 @@ export default function Home() {
     }
   };
 
-  const toggleSlideover = () => {
-    setIsVisible((prev) => !prev);
-  };
+ 
   return (
     <div>
       <Navbar />
@@ -123,13 +102,8 @@ export default function Home() {
         <div>
           <motion.div
             className={`${pop.className} font-semibold text-[5vh] md:text-[7vh]  justify-center pt-20 md:pt-[10vh]  flex text-black `}
-            initial={{ opacity: 0, y: 100 }} // Start invisible and lower
-            whileInView={{ opacity: 1, y: 0 }} // Animate to visible and move up on scroll
-            transition={{ duration: 3, ease:"easeIn"}} // Duration of the animation
-            viewport={{ once: true }} // Only animate once when in view
-            
-          >
-            We've Got Answers{" "}
+         >
+            We&apos;ve Got Answers{" "}
           </motion.div>
 
           {/*  */}
@@ -242,89 +216,8 @@ export default function Home() {
 
        <Section4/>
         {/* Our Recent Posts start */}
-        <div>
-          <div className=" text-gray-700 font-bold text-[4vh] justify-center flex  pt-10">
-            Our Recent Posts
-          </div>
+        <Section5/>
 
-          <div className=" md:flex md:flex-row md:justify-center">
-            {/* image 1 start */}
-            <div className=" flex  justify-center ml-10 flex-col  pt-16  md:pt-16">
-              <div className=" bg-white h-[30rem] rounded-3xl    shadow-sm w-[25rem]">
-                <Image
-                  src={"/hand_heart.png"}
-                  alt={"hort"}
-                  width={4000}
-                  height={100}
-                  className=" w-full h-[250px] size-10 rounded-t-3xl"
-                />
-                <div className="flex flex-col px-8  space-y-3   ">
-                  <div className="text-gray-500 pt-5"> Jan 2, 2023</div>
-                  <div
-                    className={`${pop.className} text-gray-800 font-semibold text-[3vh]  `}
-                  >
-                    10 Foods To Avoid For Your <br /> Heart Health
-                  </div>
-                  <div className="text-gray-500">
-                    Its normal to feeel anxiety , worry and grief any time
-                    you're diagnosed wth a condition that's certainly true{" "}
-                  </div>
-                </div>
-              </div>
-            </div>{" "}
-            {/* image 1 end */}
-            {/* image 2 start */}
-            <div className=" flex  justify-center ml-10 flex-col  pt-4  md:pt-16">
-              <div className=" bg-white h-[30rem] rounded-3xl shadow-sm w-[25rem]">
-                <Image
-                  src={"/family.png"}
-                  alt={"hort"}
-                  width={4000}
-                  height={100}
-                  className=" w-full h-[250px] size-10 rounded-t-3xl"
-                />
-                <div className="flex flex-col px-8  space-y-3   ">
-                  <div className="text-gray-500 pt-5"> Jan 2, 2023</div>
-                  <div
-                    className={`${pop.className} text-gray-800 font-semibold text-[3vh]  `}
-                  >
-                    10 Foods To Avoid For Your <br /> Heart Health
-                  </div>
-                  <div className="text-gray-500">
-                    Its normal to feeel anxiety , worry and grief any time
-                    you're diagnosed wth a condition that's certainly true{" "}
-                  </div>
-                </div>
-              </div>
-            </div>{" "}
-            {/* image 2 end */}
-            {/* image 3 start */}
-            <div className=" flex  justify-center ml-10 flex-col pt-4  md:pt-16">
-              <div className=" bg-white h-[30rem] rounded-3xl shadow-sm w-[25rem]">
-                <Image
-                  src={"/doctor_research.png"}
-                  alt={"hort"}
-                  width={4000}
-                  height={100}
-                  className=" w-full h-[250px] size-10 rounded-t-3xl"
-                />
-                <div className="flex flex-col px-8  space-y-3   ">
-                  <div className="text-gray-500 pt-5"> Jan 2, 2023</div>
-                  <div
-                    className={`${pop.className} text-gray-800 font-semibold text-[3vh]  `}
-                  >
-                    10 Foods To Avoid For Your <br /> Heart Health
-                  </div>
-                  <div className="text-gray-500">
-                    Its normal to feeel anxiety , worry and grief any time
-                    you're diagnosed wth a condition that's certainly true{" "}
-                  </div>
-                </div>
-              </div>
-            </div>{" "}
-            {/* image 3 end */}
-          </div>
-        </div>
         {/* Our Recent Posts end */}
         {/* TEXTS START */}
         <div className=" flex  md:py-[rem] flex-col pt-10 space-y-5 md:flex md:flex-row space-x-14 md:justify-center items-center">
@@ -572,3 +465,7 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+

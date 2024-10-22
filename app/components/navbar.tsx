@@ -1,51 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { IoMdMedical } from "react-icons/io";
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import "remixicon/fonts/remixicon.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Montserrat } from "next/font/google";
-import { Mulish } from "next/font/google";
-import { Outfit } from "next/font/google";
-import { Fredoka } from "next/font/google";
-import { Dancing_Script } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
-import { Poppins } from "next/font/google";
-import { MdPregnantWoman } from "react-icons/md";
-import { TbHomeHeart } from "react-icons/tb";
-import { GiFruitBowl } from "react-icons/gi";
-import { MdLocalPharmacy } from "react-icons/md";
-import { BiSolidHomeHeart } from "react-icons/bi";
+
 import { useAnimation } from "framer-motion";
 import "remixicon/fonts/remixicon.css"; // Import Remix Iconszz
-import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
 
-const pop = Poppins({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-});
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
-const mulish = Mulish({
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
-});
-const out = Outfit({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
-const fred = Fredoka({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-const dance = Dancing_Script({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+
 const Mont = Montserrat({
   subsets: ["latin"],
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
@@ -54,9 +18,6 @@ const Mont = Montserrat({
 export default function Navbar() {
   const controls = useAnimation();
   const [isVisible, setIsVisible] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [selectedOption, setSelectedOption] = useState("Actions");
 
   // This function will run when the component comes into view
   const handleScroll = (entries: IntersectionObserverEntry[]) => {
@@ -84,24 +45,8 @@ export default function Navbar() {
     };
   }, [controls]);
 
-  // Function to toggle dropdown visibility
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
+ 
 
-  // Function to handle option selection
-  const handleSelectOption = (option: string) => {
-    setSelectedOption(option);
-    setIsOpen(false); // Close the dropdown after selecting an option
-  };
-
-  const toggleSection = (index: number) => {
-    if (openIndex === index) {
-      setOpenIndex(null); // Close the currently opened section
-    } else {
-      setOpenIndex(index); // Open the clicked section
-    }
-  };
 
   const toggleSlideover = () => {
     setIsVisible((prev) => !prev);
